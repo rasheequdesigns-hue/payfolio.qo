@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Mr. Rasheequ Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* Glassmorphism Login Card */
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .lock-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #6c5ce7;
+            text-shadow: 0 0 15px rgba(108, 92, 231, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .login-container h1 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+        
+        .login-container p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
+        }
+        
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(108, 92, 231, 0.5);
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .error-message {
+            color: #ff7675;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 118, 117, 0.1);
+            border: 1px solid rgba(255, 118, 117, 0.2);
+            display: none;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Login Form -->
+    <div class="login-container" id="loginContainer">
+        <div class="lock-icon">🔐</div>
+        <h1>Admin Login</h1>
+        <p>Secure access to admin dashboard</p>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login as Admin</button>
+            
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        // Admin Authentication Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginContainer = document.getElementById('loginContainer');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Check if user is already logged in
+            const token = localStorage.getItem('adminToken');
+            const loginTime = localStorage.getItem('loginTime');
+            
+            // Auto-logout after 1 hour of inactivity
+            if (token && loginTime) {
+                const currentTime = new Date().getTime();
+                const elapsedTime = currentTime - parseInt(loginTime);
+                
+                // 1 hour = 3600000 milliseconds
+                if (elapsedTime < 3600000) {
+                    // Redirect to dashboard
+                    window.location.href = '/admin/dashboard';
+                } else {
+                    // Session expired, clear storage
+                    localStorage.removeItem('adminToken');
+                    localStorage.removeItem('loginTime');
+                }
+            }
+            
+            // Handle login form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Exact match credentials
+                const validEmail = 'rasheequ.designs@gmail.com';
+                const validPassword = 'rasheequ.designs';
+                
+                // Validate credentials
+                if (email === validEmail && password === validPassword) {
+                    // Create secure session
+                    const token = btoa(email + ':' + new Date().getTime()); // Simple token generation
+                    localStorage.setItem('adminToken', token);
+                    localStorage.setItem('loginTime', new Date().getTime());
+                    
+                    // Hide error message
+                    errorMessage.classList.remove('show');
+                    
+                    // Redirect to dashboard
+                    window.location.href = '/admin/dashboard';
+                } else {
+                    // Show error message with animation
+                    errorMessage.textContent = 'Invalid email or password. Please try again.';
+                    errorMessage.classList.add('show');
+                    
+                    // Add shake animation
+                    errorMessage.style.animation = 'none';
+                    setTimeout(() => {
+                        errorMessage.style.animation = 'shake 0.5s ease-in-out';
+                    }, 10);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
