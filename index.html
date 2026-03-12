@@ -1,166 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mr. Rasheequ – Graphic Designer</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freelance Payment Tracker - Manage Your Payments</title>
+    <meta name="description" content="Simple and elegant payment tracking for freelance clients. Track payments, manage projects, and generate reports.">
+    <meta name="author" content="Lovable" />
+
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/BH2VhOqjwjfSQY1ltThaLFeWHrf1/social-images/social-1763696010464-graphiqo logo colour.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/BH2VhOqjwjfSQY1ltThaLFeWHrf1/social-images/social-1763696010464-graphiqo logo colour.png">
+    <meta property="og:title" content="Freelance Payment Tracker - Manage Your Payments">
+  <meta name="twitter:title" content="Freelance Payment Tracker - Manage Your Payments">
+  <meta property="og:description" content="Simple and elegant payment tracking for freelance clients. Track payments, manage projects, and generate reports.">
+  <meta name="twitter:description" content="Simple and elegant payment tracking for freelance clients. Track payments, manage projects, and generate reports.">
 </head>
 
-<body>
-
-<!-- PRELOADER -->
-<div class="preloader" id="preloader">
-  <div class="loader"></div>
-</div>
-
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="nav-inner">
-    <div class="logo">Mr.Rasheequ</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-      <a href="/admin/login" style="color: #ff6b6b;">Admin</a>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <span class="badge">Graphic Designer</span>
-    <h1>
-      Creating <span>Visual Stories</span><br />
-      That Build Brands
-    </h1>
-    <p>
-      I design clean, modern and meaningful visuals that connect brands
-      with people. Specialized in branding, UI design and digital creatives.
-    </p>
-    <div class="hero-actions">
-      <a href="#portfolio" class="btn primary">View Portfolio</a>
-      <a href="#contact" class="btn secondary">Hire Me</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="section-header">
-    <h2>About Me</h2>
-    <p>Designer focused on clarity, emotion and usability.</p>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-text">
-      <p>
-        I’m a creative graphic designer with a strong passion for
-        branding and visual identity. My goal is to create designs
-        that are simple, powerful and memorable.
-      </p>
-      <p>
-        I work closely with clients to transform ideas into visually
-        strong digital experiences.
-      </p>
-    </div>
-
-    <div class="skills">
-      <div class="skill">Brand Identity <span>Expert</span></div>
-      <div class="skill">UI / UX Design <span>Advanced</span></div>
-      <div class="skill">Illustration <span>Advanced</span></div>
-      <div class="skill">Typography <span>Expert</span></div>
-    </div>
-    
-    <div class="services">
-      <h3>Services</h3>
-      <div class="services-grid">
-        <div class="service">
-          <h4>Brand Identity</h4>
-          <p>Creating cohesive visual identities that represent your brand values.</p>
-        </div>
-        <div class="service">
-          <h4>UI/UX Design</h4>
-          <p>Designing intuitive and engaging digital experiences.</p>
-        </div>
-        <div class="service">
-          <h4>Print Design</h4>
-          <p>Eye-catching print materials that make a lasting impression.</p>
-        </div>
-        <div class="service">
-          <h4>Illustration</h4>
-          <p>Custom illustrations that bring your ideas to life.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portfolio">
-  <div class="section-header">
-    <h2>Selected Works</h2>
-    <p>A few projects that define my style and skills.</p>
-  </div>
-
-  <div class="portfolio-grid">
-    <div class="project">
-      <div class="project-img"></div>
-      <h3>Brand Identity</h3>
-      <p>Logo & visual system for a tech startup</p>
-      <button class="btn secondary project-btn">View Details</button>
-    </div>
-
-    <div class="project">
-      <div class="project-img"></div>
-      <h3>UI Dashboard</h3>
-      <p>Modern SaaS dashboard design</p>
-      <button class="btn secondary project-btn">View Details</button>
-    </div>
-
-    <div class="project">
-      <div class="project-img"></div>
-      <h3>Poster Design</h3>
-      <p>Event and marketing poster series</p>
-      <button class="btn secondary project-btn">View Details</button>
-    </div>
-
-    <div class="project">
-      <div class="project-img"></div>
-      <h3>Packaging</h3>
-      <p>Minimal eco-friendly product packaging</p>
-      <button class="btn secondary project-btn">View Details</button>
-    </div>
-  </div>
-  
-  <div class="portfolio-actions">
-    <button class="btn primary">Load More Projects</button>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="section-header">
-    <h2>Let’s Work Together</h2>
-    <p>Have a project in mind? Let’s talk.</p>
-  </div>
-
-  <form class="contact-form">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" placeholder="Your Message"></textarea>
-    <button class="btn primary" type="submit">Send Message</button>
-  </form>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>© 2025 Mr. Rasheequ — Graphic Designer</p>
-</footer>
-
-  <script src="script.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
